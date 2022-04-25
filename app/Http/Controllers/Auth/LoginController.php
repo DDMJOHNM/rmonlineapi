@@ -27,10 +27,11 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return response()->json([
                 'login' => 'success',
+                'token' => $request->session()->token(),
             ]);
         }
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+        return back()->withErrors([ /*todo return error */
+            'error' => 'The provided credentials do not match our records.',
         ]);
     }
 

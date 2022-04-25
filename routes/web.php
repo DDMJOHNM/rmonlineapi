@@ -32,7 +32,7 @@ Route::post('/logout',[LoginController::class,'logout']);
 Route::get('/loggedIn',[LoginController::class,'loggedIn']);
 
 Route::get('/client/{id}',[ClientController::class,'getClient'])->middleware('auth');
-Route::get('/clients',[ClientController::class,'getClients'])->middleware('auth');
+Route::get('/clients',[ClientController::class,'getClients']);
 Route::post('/add',[ClientController::class,'add'])->middleware('auth');
 
 //edit, delete, search, validation
