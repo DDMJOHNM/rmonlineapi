@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Client\ClientController;
-use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\Client\ClientController;
+    use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -28,12 +28,12 @@ Route::get('/token', function (Request $request) {
 });
 
 
-Route::post('/login',[LoginController::class,'authenticate'])->name('login');
+Route::post('/login',[LoginController::class,'authenticate']);
 Route::post('/logout',[LoginController::class,'logout']);
 Route::get('/loggedIn',[LoginController::class,'loggedIn']);
 
-Route::get('/client/{id}',[ClientController::class,'getClient'])->middleware( 'auth:sanctum');
-Route::get('/clients',[ClientController::class,'getClients'])->middleware( 'auth:sanctum');
-Route::post('/add',[ClientController::class,'add'])->middleware( 'auth:sanctum')->name('add');
+Route::get('/client/{id}',[ClientController::class,'getClient'])->middleware('auth:sanctum');
+Route::get('/clients',[ClientController::class,'getClients'])->middleware('auth:sanctum');
+Route::post('/add',[ClientController::class,'add'])->middleware('auth:sanctum');
 
 //edit, delete, search, validation
