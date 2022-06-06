@@ -1,7 +1,7 @@
 <?php
 
-    use App\Http\Controllers\Client\ClientController;
-    use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Client\ClientController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -17,7 +17,7 @@ use App\Http\Controllers\Auth\LoginController;
 */
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 /*
  * App Routing
@@ -27,12 +27,13 @@ Route::get('/token', function (Request $request) {
      ddd(csrf_token());
 });
 
-Route::post('/login',[LoginController::class,'authenticate']);
+
+Route::post('/login',[LoginController::class,'authenticate'])->name('login');
 Route::post('/logout',[LoginController::class,'logout']);
 Route::get('/loggedIn',[LoginController::class,'loggedIn']);
 
-Route::get('/client/{id}',[ClientController::class,'getClient'])->middleware('auth');
-Route::get('/clients',[ClientController::class,'getClients']);
-Route::post('/add',[ClientController::class,'add'])->middleware('auth');
+Route::get('/client/{id}',[ClientController::class,'getClient'])->middleware( 'auth:sanctum');
+Route::get('/clients',[ClientController::class,'getClients'])->middleware( 'auth:sanctum');
+Route::post('/add',[ClientController::class,'add'])->middleware( 'auth:sanctum')->name('add');
 
 //edit, delete, search, validation

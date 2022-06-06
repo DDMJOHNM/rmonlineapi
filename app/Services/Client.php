@@ -4,6 +4,8 @@
 
     use http\Client\Request;
     use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Log;
 
     /*
      * Logging to be implemented
@@ -22,8 +24,10 @@
 
         public function getClients(): array
         {
-            $results = DB::select('select * from clients');
-            return $results;
+                Log::info("LoggedIn",array(Auth::check()));
+                $results = DB::select('select * from clients');
+                return $results;
+
         }
 
         public function addClient(Array $data): bool

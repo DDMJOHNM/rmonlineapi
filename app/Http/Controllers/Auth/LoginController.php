@@ -11,6 +11,7 @@ use function redirect;
 
 class LoginController extends Controller
 {
+
      /**
      * This action returns a remember token if the user successfully logged in.
      *
@@ -24,10 +25,10 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials,true)) {
-            $request->session()->regenerate();
+            //$request->session()->regenerate();
             return response()->json([
                 'login' => 'success',
-                'token' => $request->session()->token(),
+                'token' => auth()->user()->createToken('API Token')->plainTextToken,
             ]);
         }
         return back()->withErrors([ /*todo return error */
