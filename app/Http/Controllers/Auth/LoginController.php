@@ -25,7 +25,7 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials,true)) {
-            //$request->session()->regenerate();
+            $request->session()->regenerate();
             return response()->json([
                 'login' => 'success',
                 'token' => auth()->user()->createToken('API Token')->plainTextToken,
